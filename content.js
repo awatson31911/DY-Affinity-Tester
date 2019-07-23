@@ -1,12 +1,33 @@
 chrome.runtime.sendMessage({ todo: 'showPageAction' });
 
+// const port = chrome.runtime.connect({name: 'mainPort'});
+// port.postMessage({ todo: 'showPageAction' });
+
+/* --------------------------------------------------------------------*/
 // Injects additional script to broadcast value of utag_data.product_category
-const s = document.createElement('script');
-s.src = chrome.extension.getURL('sendUtagData.js');
-(document.head || document.documentElement).appendChild(s);
-s.onload = () => {
-  s.remove();
+const scriptInject = document.createElement('script');
+
+scriptInject.src = chrome.extension.getURL('sendUtagData.js');
+
+(document.head || document.documentElement).appendChild(scriptInject);
+
+scriptInject.onload = () => {
+  scriptInject.remove();
 };
+/* --------------------------------------------------------------------*/
+
+if (!localStorage.getItem('CSE_Challenge')) {
+  const initialValues = {
+    mens: 0,
+    womens: 0,
+    lifestyle: 0,
+    home: 0,
+    beauty: 0
+  };
+  localStorage.setItem('CSE_Challenge', JSON.stringify(initialValues));
+} 
+
+const affinity = JSON.parse(localStorage.getItem('CSE_Challenge'));
 
 const categories = {
   home: 'home',
@@ -16,35 +37,26 @@ const categories = {
   'beauty-products': 'beauty'
 };
 
-console.log(localStorage)
+let category;
+
 document.addEventListener('sendProductCategory', (event) => {
-  // get category
-  // check if category exists and is in categories
-  // increment category and add back to 
+  category = event.detail[0].split(',')[0];
+  console.log('This is the event from the injected script--->', category);
+  
+  if (category && categories[category]) {
+    console.log(affinity)
+    affinity[categories[category]]++;
+    localStorage.setItem('CSE_Challenge', JSON.stringify(affinity));
+    console.log(affinity)
+  }
 });
 
 
 
-// window.onload = () => {
-//   setTimeout(() => {
-//     console.log('HERE\'S THE UTAG ----->', window.utag_data, window);
+//port.postMessage({ todo: 'sendCategoryAffinities', data: affinity });
+chrome.runtime.sendMessage({ todo: 'sendCategoryAffinities', data: affinity});
 
-//   }, 6000)
 
-// };
-//console.log(document.getElementsByClassName('c-product-add-to-cart__button')[0])
-
-// if (window.href === 'https://www.urbanoutfitters.com/new-arrivals') {
-//   // Logic to rearrange categories
-// }
-
-// if (window.utag_data.product_category && categories[window.utag_data.product_category]) {
-//   const category = categories[window.utag_data.product_category];
-//   const affinity = JSON.parse(localStorage.getItem('CSE_Challenge'));
-
-//   console.log(category, affinity);
-//   affinity[category]++;
-//   localStorage.setItem('CSE_Challenge', JSON.stringify(affinity));
-
-//   console.log(category, affinity)
-// }
+if (window.href === 'https://www.urbanoutfitters.com/new-arrivals') {
+  // Logic to rearrange categories
+}

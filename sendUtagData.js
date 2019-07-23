@@ -1,12 +1,6 @@
-
-
-console.log(window.utag_data.product_category)
 setTimeout(() => {
+  // Send product category from global window
   document.dispatchEvent(new CustomEvent('sendProductCategory', {
-    category: window.utag_data.product_category // Send product category from global window 
+    detail: window.utag_data.product_category
   }));
 }, 0);
-
-  // document.dispatchEvent(new CustomEvent('sendProductCategory', {
-  //   category: window.utag_data.product_category // Send product category from global window 
-  // }));
