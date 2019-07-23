@@ -8,15 +8,34 @@
     "48": "icon48.png",
     "16": "icon16.png"
   },
-  "browser_action": {
+  "page_action": {
     "default_icon": "icon16.png",
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["eventPage.js"],
+    "scripts": [
+      "eventPage.js"
+    ],
     "persistent": false
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.urbanoutfitters.com/shop/*",
+        "https://www.urbanoutfitters.com/new-arrivals"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
   "permissions": [
-    "storage"
+    "tabs",
+    "https://www.urbanoutfitters.com/shop/*",
+    "https://www.urbanoutfitters.com/new-arrivals"
+  ],
+  "web_accessible_resources": [
+    "sendUtagData.js"
   ]
 }

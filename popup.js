@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  
   if (!localStorage.getItem('CSE_Challenge')) {
     const initialValues = {
       mens: 0,
@@ -20,11 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // load prior affinity amounts 
-  // set prior affinity amounts 
-  // get url
-  // check if "https://www.urbanoutfitters.com/shop/*"
-  // IF true check category 
+  // load prior affinity amounts √
+  // set prior affinity amounts √
+  // check category 
   // increase category count by 1
   //add on click event to button 
   // **** onClick should check for error popup
