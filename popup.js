@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
 
   const getAffinities = () => {
     chrome.runtime.sendMessage({ todo: 'getAffinities' }, (response) => {
@@ -16,14 +16,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, { todo: 'clearAffinities' }, (response) => {
         const affinity = response;
-        affinity && Object.keys(affinity).forEach((category) => {
+        localStorage.setItem('CSE_Challenge', JSON.stringify(affinity));
+
+        Object.keys(affinity).forEach((category) => {
           document.getElementById(category).textContent = affinity[category];
         });
       });
     });
   });
-  
+
   getAffinities();
-  
+
 });
 

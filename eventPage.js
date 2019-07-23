@@ -8,6 +8,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   
   } else if (request.todo === 'sendCategoryAffinities') {
     categoryData = request.data;
+    console.log('values from content in eventPage------>', categoryData)
   
   } else if (request.todo === 'getAffinities') {
     sendResponse(categoryData);

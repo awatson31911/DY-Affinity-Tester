@@ -21,8 +21,16 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.urbanoutfitters.com/shop/*",
-        "https://www.urbanoutfitters.com/new-arrivals"
+        "https://www.urbanoutfitters.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.urbanoutfitters.com/*"
       ],
       "js": [
         "content.js"
@@ -32,8 +40,7 @@
   ],
   "permissions": [
     "tabs",
-    "https://www.urbanoutfitters.com/shop/*",
-    "https://www.urbanoutfitters.com/new-arrivals"
+    "https://www.urbanoutfitters.com/*"
   ],
   "web_accessible_resources": [
     "sendUtagData.js"
