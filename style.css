@@ -1,0 +1,19 @@
+body {
+  min-width: 200px;
+}
+
+#rank-header {
+  background-color: black;
+    color: white;
+}
+
+.category {
+  margin: 0
+}
+
+.category span {
+  color: green;
+}
+button {
+  margin: 10px;
+}

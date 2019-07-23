@@ -70,26 +70,26 @@ if (window.location.href.match(regex)) {
       chrome.runtime.sendMessage({ todo: 'sendCategoryAffinities', data: affinity });
     }
 
-    /* ------------------------------------------------------------ */
-    // Clear Affinity values logic 
-    chrome.runtime.onMessage.addListener((request) => {
-      if (request.todo === 'clearAffinities') {
-
-        const resetValues = {
-          mens: 0,
-          womens: 0,
-          lifestyle: 0,
-          home: 0,
-          beauty: 0
-        };
-
-        localStorage.setItem('CSE_Challenge', JSON.stringify(resetValues));
-        chrome.runtime.sendMessage({ todo: 'sendCategoryAffinities', data: resetValues });
-      }
-
-    });
-    /* ------------------------------------------------------------ */
-
   });
 
-};
+}
+
+/* ------------------------------------------------------------ */
+// Clear Affinity values logic 
+chrome.runtime.onMessage.addListener((request) => {
+  if (request.todo === 'clearAffinities') {
+
+    const resetValues = {
+      mens: 0,
+      womens: 0,
+      lifestyle: 0,
+      home: 0,
+      beauty: 0
+    };
+
+    localStorage.setItem('CSE_Challenge', JSON.stringify(resetValues));
+    chrome.runtime.sendMessage({ todo: 'sendCategoryAffinities', data: resetValues });
+  }
+
+});
+/* ------------------------------------------------------------ */
