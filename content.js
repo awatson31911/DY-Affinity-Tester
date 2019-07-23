@@ -4,8 +4,8 @@ const initialValues =
   JSON.parse(localStorage.getItem('CSE_Challenge'))
     ? JSON.parse(localStorage.getItem('CSE_Challenge'))
     : {
-      mens: 0,
       womens: 0,
+      mens: 0,
       lifestyle: 0,
       home: 0,
       beauty: 0
@@ -16,7 +16,7 @@ chrome.runtime.sendMessage({ todo: 'sendCategoryAffinities', data: initialValues
 });
 
 
-// Only see if we can increment affinity on individual/shop pages
+// Only see if we need to increment affinity on individual/shop pages
 const regex = /https:\/\/www\.urbanoutfitters\.com\/shop\/*/g;
 if (window.location.href.match(regex)) {
 
