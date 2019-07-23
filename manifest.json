@@ -30,12 +30,12 @@
     },
     {
       "matches": [
-        "https://www.urbanoutfitters.com/*"
+        "https://www.urbanoutfitters.com/new-arrivals"
       ],
       "js": [
-        "content.js"
+        "content_NewArrivalsPage.js"
       ],
-      "run_at": "document_idle"
+      "run_at": "document_end"
     }
   ],
   "permissions": [
