@@ -48,15 +48,12 @@ document.addEventListener('sendProductCategory', (event) => {
     affinity[categories[category]]++;
     localStorage.setItem('CSE_Challenge', JSON.stringify(affinity));
     console.log(affinity)
+    //port.postMessage({ todo: 'sendCategoryAffinities', data: affinity });
+    chrome.runtime.sendMessage({ todo: 'sendCategoryAffinities', data: affinity});
+  }
+  
+  if (window.href === 'https://www.urbanoutfitters.com/new-arrivals') {
+    // Logic to rearrange categories
   }
 });
 
-
-
-//port.postMessage({ todo: 'sendCategoryAffinities', data: affinity });
-chrome.runtime.sendMessage({ todo: 'sendCategoryAffinities', data: affinity});
-
-
-if (window.href === 'https://www.urbanoutfitters.com/new-arrivals') {
-  // Logic to rearrange categories
-}
