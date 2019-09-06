@@ -3,11 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const getAffinities = () => {
     chrome.runtime.sendMessage({ todo: 'getAffinities' }, (response) => {
       const affinity = response;
+      let newAffinity;
 
-      localStorage.setItem('CSE_Challenge', JSON.stringify(affinity));
+      affinity && localStorage.setItem('CSE_Challenge', JSON.stringify(affinity));
+      newAffinity = JSON.parse(localStorage.getItem('CSE_Challenge'))
 
-      Object.keys(affinity).forEach((category) => {
-        document.getElementById(category).textContent = affinity[category];
+      Object.keys(newAffinity).forEach((category) => {
+        document.getElementById(category).textContent = newAffinity[category];
       });
     });
   };
@@ -16,10 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, { todo: 'clearAffinities' }, (response) => {
         const affinity = response;
-        localStorage.setItem('CSE_Challenge', JSON.stringify(affinity));
+        let newAffinity;
 
-        Object.keys(affinity).forEach((category) => {
-          document.getElementById(category).textContent = affinity[category];
+        localStorage.setItem('CSE_Challenge', JSON.stringify(affinity));
+        newAffinity = JSON.parse(localStorage.getItem('CSE_Challenge'))
+        document.querySelector('body').style.backgroundColor = 'red'; 
+        Object.keys(newAffinity).forEach((category) => {
+          document.getElementById(category).textContent = newAffinity[category];
         });
       });
     });

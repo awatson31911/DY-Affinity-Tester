@@ -9,7 +9,7 @@
 - CSS
 
 ## Summary
-Information is taken from the web page and sent back to the extension to display a user's affinity for specific categories: women's fashion, men's fashioni, beauty, home and lifestyle. The extension also rearranges the New-Arrivals page to place higher ranking categories closer to the top of the page.
+Information is taken from the web page and sent back to the extension to display a user's affinity for specific categories: women's fashion, men's fashion, beauty, home and lifestyle. The extension also rearranges the New-Arrivals page to place higher ranking categories closer to the top of the page.
 
 The extension uses chrome messaging to communicate from the web page to the extension and vice versa. Namely the functions:
 

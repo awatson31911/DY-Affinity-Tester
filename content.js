@@ -39,6 +39,7 @@ if (window.location.href.match(regex)) {
       'beauty-products': 'beauty'
     };
     // Store category from injected script in variable
+    console.log(event.detail)
     const category = event.detail[0].split(',')[0];
 
     if (!localStorage.getItem('CSE_Challenge')) {
@@ -55,6 +56,7 @@ if (window.location.href.match(regex)) {
       /* ------------------------------------------------------------ */
       // Adds click event to Add To Bag button to increment affinity
       const addToBagButton = document.querySelector('button.c-product-add-to-cart__button');
+      
       addToBagButton.addEventListener('click', (event) => {
         event.stopPropagation;
         const errorMsg = document.querySelector('div.js-product-message p.c-product-message__info--error');
